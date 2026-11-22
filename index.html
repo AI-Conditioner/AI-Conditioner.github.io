@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Academic homepage featuring research interests, arXiv preprints, GRE/TOEFL scores, and personal interests.">
+  <title>Kunjian Wang | Prospective Ph.D. Applicant</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231e40af'/%3E%3Cpath d='M18 44L32 18L46 44H39L32 30L25 44H18Z' fill='%23ffffff'/%3E%3C/svg%3E">
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('site-theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#about" id="brand-link">AI-Conditioner.github.io</a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Primary Navigation">
+        <a href="#about" data-i18n="navAbout">About</a>
+        <a href="#interests" data-i18n="navInterests">Interests</a>
+        <a href="#papers" data-i18n="navPapers">Publications</a>
+        <a href="#cv" data-i18n="navCv">CV</a>
+        <a href="#scores" data-i18n="navScores">Scores</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <button type="button" class="lang-btn" id="lang-toggle" aria-label="Switch UI language">中文</button>
+        <button type="button" class="icon-btn" id="theme-toggle" aria-label="Toggle color theme" title="Toggle color theme">
+          <span id="theme-icon" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="icon-btn menu-btn" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-main">
+            <div class="status-pill" id="status-badge">Loading...</div>
+            <h1 class="hero-title">
+              <span id="profile-name">Your Name</span>
+              <span class="hero-native" id="profile-native-name"></span>
+            </h1>
+            <p class="hero-headline" id="profile-headline"></p>
+            <p class="hero-affiliation" id="profile-affiliation"></p>
+            <div class="hero-bio" id="profile-bio"></div>
+
+            <div class="hero-links" id="hero-links"></div>
+          </div>
+
+          <aside class="portrait-card" aria-label="Applicant Portrait and Summary">
+            <div class="portrait-frame" id="portrait-frame"></div>
+            <div class="portrait-meta">
+              <div class="meta-row">
+                <span class="meta-label" data-i18n="locationLabel">Location</span>
+                <span class="meta-value" id="profile-location"></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label" data-i18n="emailLabel">Email</span>
+                <button type="button" class="inline-copy-btn" id="hero-copy-email" title="Copy email address">
+                  <span id="profile-email-text"></span>
+                </button>
+              </div>
+              <div class="openalex-box" id="openalex-box" hidden>
+                <span class="meta-label">OpenAlex Live Stats</span>
+                <p class="openalex-text" id="openalex-stats"></p>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="news-block">
+          <h2 class="news-heading" data-i18n="newsHeading">News</h2>
+          <ul class="news-list" id="news-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="interests" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="interestsHeading">Research &amp; Personal Interests</h2>
+          <p data-i18n="interestsSub">Core academic problems I investigate, alongside interests outside the lab.</p>
+        </div>
+
+        <h3 class="subsection-title" data-i18n="researchTitle">Research Interests</h3>
+        <div class="card-grid cols-3" id="research-interests"></div>
+
+        <h3 class="subsection-title personal-title" data-i18n="personalTitle">Personal Interests (Misc)</h3>
+        <div class="personal-grid" id="personal-interests"></div>
+      </div>
+    </section>
+
+    <section id="papers" class="section">
+      <div class="container">
+        <div class="section-head papers-head">
+          <div>
+            <h2 data-i18n="papersHeading">Publications &amp; arXiv Preprints</h2>
+            <p data-i18n="papersSub">Filter by topic or keyword, inspect abstracts, open PDFs, or copy BibTeX.</p>
+          </div>
+          <div class="paper-controls">
+            <label class="sr-only" for="paper-search">Search papers</label>
+            <input type="search" id="paper-search" class="search-input" placeholder="Search title, author, or arXiv ID...">
+          </div>
+        </div>
+
+        <div class="filter-bar" id="paper-filters" role="group" aria-label="Filter papers by topic"></div>
+        <div class="paper-list" id="paper-list"></div>
+      </div>
+    </section>
+
+    <section id="cv" class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="cvHeading">Curriculum Vitae</h2>
+          <p data-i18n="cvSub">Academic CV and full research background.</p>
+        </div>
+        <div id="cv-content"></div>
+      </div>
+    </section>
+
+    <section id="scores" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="scoresHeading">Education, Transcript &amp; Standardized Test Scores</h2>
+          <p data-i18n="scoresSub">Academic degrees, official graduate transcript, GRE, and TOEFL iBT records.</p>
+        </div>
+
+        <div class="education-grid" id="education-grid"></div>
+        <div class="card-grid cols-2" id="score-grid"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section-alt">
+      <div class="container contact-box">
+        <div>
+          <h2 data-i18n="contactHeading">Contact</h2>
+          <p data-i18n="contactSub">Feel free to reach out regarding Ph.D. openings, preprints, or research collaborations.</p>
+        </div>
+        <div class="contact-actions">
+          <button type="button" class="btn btn-primary" id="copy-email-btn" data-i18n="copyEmailBtn">Copy Email</button>
+          <div class="social-links" id="social-links"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="footer-year"></span> <span id="footer-owner">Your Name</span> · Hosted on GitHub Pages</p>
+      <p class="footer-tip">Last updated: <span id="footer-updated"></span> · Edit via <code>site-config.js</code></p>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="bibtex-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h3 id="modal-title">BibTeX Citation</h3>
+        <button type="button" class="icon-btn" id="modal-close" aria-label="Close dialog">✕</button>
+      </div>
+      <p class="modal-paper-name" id="modal-paper-name"></p>
+      <pre class="bibtex-code"><code id="modal-bibtex-text"></code></pre>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="modal-copy-btn" data-i18n="copyBibBtn">Copy BibTeX</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="./site-config.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>
