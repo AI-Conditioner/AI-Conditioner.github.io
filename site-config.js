@@ -18,7 +18,7 @@ window.SITE_CONFIG = {
     name: "Kunjian Wang",
     nativeName: "汪坤健",
     monogram: "KW",
-    avatarUrl: "avatar.jpg", // 可放本地相对路径如 "./avatar.jpg"
+    avatarUrl: "assets/avatar.jpg", // 可放本地相对路径如 "./avatar.jpg"
     headline: "Prospective US Ph.D. Applicant · Applied Mathematics & Computational Science",
     affiliation: "Beijing Computational Science Research Center (CSRC), GSCAEP",
     location: "Beijing, China",
