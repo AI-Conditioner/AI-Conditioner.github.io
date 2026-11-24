@@ -30,6 +30,8 @@ window.SITE_CONFIG = {
     ],
     heroLinks: [
       { label: "GitHub", url: "https://github.com/AI-Conditioner" },
+      { label: "TikTok", url: "https://www.tiktok.com/@ai_conditioner" },
+      { label: "Instagram", url: "https://www.instagram.com/ai_conditioner/" },
       { label: "CV", url: "#cv" },
       { label: "Scores", url: "#scores" }
     ]
