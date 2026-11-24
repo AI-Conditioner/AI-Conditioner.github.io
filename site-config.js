@@ -22,7 +22,7 @@ window.SITE_CONFIG = {
     headline: "Prospective US Ph.D. Applicant · Applied Mathematics & Computational Science",
     affiliation: "Beijing Computational Science Research Center (CSRC), GSCAEP",
     location: "Beijing, China",
-    email: "", // 如需公开展示邮箱，在此填入后页面会自动显示联系邮箱
+    email: "jslrmfp@gmail.com",
     statusBadge: "Prospective US Ph.D. Applicant",
     bioParagraphs: [
       "I am an M.S. student in Applied Mathematics at the Beijing Computational Science Research Center (CSRC), Graduate School of the China Academy of Engineering Physics (2024–2027), following my B.S. in Mathematics and Applied Mathematics from Xi'an Jiaotong University (2020–2024).",
@@ -150,7 +150,7 @@ window.SITE_CONFIG = {
         { label: "Numerical Analysis", value: "95.0" },
         { label: "Applied Modern Algebra", value: "A-" },
         { label: "Large-Scale Scientific Computing", value: "B" },
-        { label: "Proposal Defense (开题报告)", value: "Pass (Dec 2025)" }
+        { label: "Proposal Defense", value: "Pass (Dec 2025)" }
       ]
     }
   ]
