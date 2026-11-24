@@ -37,57 +37,18 @@
       hideAbstract: "Hide Abstract",
       copiedEmail: "Copied email: ",
       copiedBib: "BibTeX copied to clipboard",
-      viewReportPdf: "View Official PDF",
-      langToggleLabel: "中文"
-    },
-    zh: {
-      navAbout: "简介",
-      navInterests: "兴趣点",
-      navPapers: "arXiv 论文",
-      navCv: "简历 (CV)",
-      navScores: "成绩记录",
-      navContact: "联系",
-      locationLabel: "坐标",
-      emailLabel: "邮箱",
-      newsHeading: "近期动态",
-      interestsHeading: "研究方向与个人兴趣点",
-      interestsSub: "关注的核心科研问题，以及科研之外保持热爱的事物。",
-      researchTitle: "研究兴趣 (Research Interests)",
-      personalTitle: "个人兴趣点 (Personal Interests)",
-      papersHeading: "arXiv 论文与学术成果",
-      papersSub: "支持按关键词检索、方向筛选、展开摘要及一键复制 BibTeX。",
-      papersEmptyDefault: "暂未发布 arXiv 论文，敬请期待。",
-      cvHeading: "个人简历 (CV)",
-      cvSub: "完整学术简历文档。",
-      cvEmpty: "个人简历（CV）正在整理中，敬请期待。",
-      viewCvPdf: "在线预览简历 (PDF)",
-      scoresHeading: "教育背景、研究生成绩单与语言 / GRE 成绩",
-      scoresSub: "学历背景、中物院/北京计算科学研究中心研究生成绩单，以及 GRE 与托福官方成绩。",
-      contactHeading: "联系与交流",
-      contactSub: "欢迎关于博士申请、预印本论文或科研合作的邮件交流。",
-      copyEmailBtn: "复制邮箱",
-      copyBibBtn: "复制 BibTeX",
-      searchPlaceholder: "搜索论文标题、作者或 arXiv ID...",
-      allTopics: "全部",
-      emptyPapers: "没有匹配当前筛选条件的论文。",
-      showAbstract: "展开摘要",
-      hideAbstract: "收起摘要",
-      copiedEmail: "已复制邮箱: ",
-      copiedBib: "BibTeX 已复制到剪贴板",
-      viewReportPdf: "在线预览官方文件 (PDF)",
-      langToggleLabel: "EN"
+      viewReportPdf: "View Official PDF"
     }
   };
 
-  var savedLang = null;
   try {
-    savedLang = localStorage.getItem("site-ui-lang");
+    localStorage.removeItem("site-ui-lang");
   } catch (e) {
-    savedLang = null;
+    // ignore storage access errors
   }
 
   var state = {
-    lang: savedLang === "zh" || savedLang === "en" ? savedLang : (config.site.uiLang === "zh" ? "zh" : "en"),
+    lang: "en",
     activeTopic: "__ALL__",
     searchQuery: "",
     lastTriggerEl: null,
@@ -95,8 +56,7 @@
   };
 
   function t(key) {
-    var dict = UI_TEXT[state.lang] || UI_TEXT.en;
-    return dict[key] || UI_TEXT.en[key] || "";
+    return UI_TEXT.en[key] || "";
   }
 
   function el(tag, className, text) {
@@ -147,33 +107,13 @@
   }
 
   function applyUiLanguage() {
-    document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+    document.documentElement.lang = "en";
     document.querySelectorAll("[data-i18n]").forEach(function (node) {
       var key = node.getAttribute("data-i18n");
       if (key) node.textContent = t(key);
     });
     var search = document.getElementById("paper-search");
     if (search) search.placeholder = t("searchPlaceholder");
-    var langBtn = document.getElementById("lang-toggle");
-    if (langBtn) langBtn.textContent = t("langToggleLabel");
-  }
-
-  function initLangToggle() {
-    var langBtn = document.getElementById("lang-toggle");
-    if (!langBtn) return;
-    langBtn.addEventListener("click", function () {
-      state.lang = state.lang === "en" ? "zh" : "en";
-      try {
-        localStorage.setItem("site-ui-lang", state.lang);
-      } catch (e) {
-        // 忽略隐私存储限制
-      }
-      applyUiLanguage();
-      renderPaperFilters();
-      renderPapers();
-      renderCv();
-      renderEducationAndScores();
-    });
   }
 
   function initTheme() {
@@ -650,7 +590,6 @@
   }
 
   initTheme();
-  initLangToggle();
   initMobileMenu();
   renderProfile();
   applyUiLanguage();
